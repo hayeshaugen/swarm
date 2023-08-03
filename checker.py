@@ -48,4 +48,3 @@ def login_to_service():
 # Test
 result = login_to_service()
 print(result)
-
