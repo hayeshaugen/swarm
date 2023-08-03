@@ -2,6 +2,10 @@ import os
 import json
 from checker import Checker
 from gmail import GmailClient
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def main():
     username = os.getenv("USERNAME")
@@ -11,7 +15,6 @@ def main():
     login_response = checker.login_to_service(username, password)
     print(login_response)
     session_cookie = login_response['cookie']
-
 
     device_id = os.getenv('DEVICEID')
     user_application_id = os.getenv('USERAPPID')

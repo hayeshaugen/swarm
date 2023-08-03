@@ -1,9 +1,5 @@
 import httpx
-from dotenv import load_dotenv
 import base64
-
-# Load environment variables from .env file
-load_dotenv()
 
 class Checker:
     def login_to_service(self, username, password):

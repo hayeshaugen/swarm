@@ -6,7 +6,6 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 
-
 class GmailClient:
     def __init__(self, credentials_path='client_secret.json', token_path='token.json'):
         self.credentials_path = credentials_path
