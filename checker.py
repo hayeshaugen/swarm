@@ -81,8 +81,8 @@ def send_message(session_cookie, device_id, user_application_id, data):
         "userApplicationId": user_application_id,
         "data": encoded_data
     }
-
     with httpx.Client() as client:
+
         response = client.post(url, headers=headers, json=body)
         
     if response.status_code == 200:
@@ -104,11 +104,10 @@ print(f'login response: {login_response}')
 session_cookie = login_response['cookie']
 
 device_id = os.getenv('DEVICEID')
-print(f'device id as int: {hex_to_int(device_id)}')
-user_application_id = os.getenv('ORGID')
+user_application_id = os.getenv('USERAPPID')
 data = 'Hello World from Space!'
-send_message_response = send_message(session_cookie, device_id, user_application_id, data)
-print(f'send message response: {send_message_response}')
+# send_message_response = send_message(session_cookie, device_id, user_application_id, data)
+# print(f'send message response: {send_message_response}')
 
 fetch_message_response = fetch_messages(session_cookie)
 print(f'fetch message response: {fetch_message_response}')
