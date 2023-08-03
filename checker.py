@@ -7,7 +7,6 @@ load_dotenv()
 
 class Checker:
     def login_to_service(self, username, password):
-            
         # Define the endpoint
         url = "https://bumblebee.hive.swarm.space/hive/login"
         
@@ -65,7 +64,6 @@ class Checker:
         return int(hex_value, 16)
 
     def send_message(self, session_cookie, device_id, user_application_id, data):
-
         url = "https://bumblebee.hive.swarm.space/hive/api/v1/messages/"
         headers = {
             "Cookie": f"JSESSIONID={session_cookie}",

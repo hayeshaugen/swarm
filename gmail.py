@@ -1,7 +1,6 @@
 import os
 import base64
-import email
-import json
+from email.message import EmailMessage
 from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -45,7 +44,7 @@ class GmailClient:
         self.service.users().messages().send(userId='me', body=body).execute()
 
     def create_message(self, to, subject, message_text):
-        message = email.message.EmailMessage()
+        message = EmailMessage()
         message['to'] = to
         message['subject'] = subject
         message.set_content(message_text)
