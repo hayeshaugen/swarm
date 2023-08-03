@@ -1,14 +1,15 @@
-import requests
+import httpx
 import os
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
 load_dotenv()
 
 def login_to_service():
-    # Get the login credentials
+    # Get the username and password from the environment variables
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
-
+    
     # Define the endpoint
     url = "https://bumblebee.hive.swarm.space/hive/login"
     
@@ -24,7 +25,8 @@ def login_to_service():
     }
     
     # Send the POST request
-    response = requests.post(url, headers=headers, data=body)
+    with httpx.Client() as client:
+        response = client.post(url, headers=headers, data=body)
     
     # Check if the request was successful
     if response.status_code == 200:
@@ -45,6 +47,25 @@ def login_to_service():
             "message": f"Unexpected status code {response.status_code}"
         }
 
+def fetch_messages(session_cookie):
+    url = "https://bumblebee.hive.swarm.space/hive/api/v1/messages"
+    headers = {
+        "Cookie": f"JSESSIONID={session_cookie}"
+    }
+    
+    with httpx.Client() as client:
+        response = client.get(url, headers=headers)
+        
+    if response.status_code == 200:
+        return response.json()
+    elif response.status_code in [401, 403]:
+        return {"status": "error", "message": "Unauthorized or Forbidden"}
+    else:
+        return {"status": "error", "message": f"Unexpected status code {response.status_code}"}
+
 # Test
-result = login_to_service()
-print(result)
+login_response = login_to_service()
+session_cookie = login_response['cookie']
+messages = fetch_messages(session_cookie)
+
+print(messages)
