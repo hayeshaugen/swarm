@@ -9,7 +9,7 @@ from google.oauth2.credentials import Credentials
 
 
 class GmailClient:
-    def __init__(self, credentials_path='./client_secret.json', token_path='token.json'):
+    def __init__(self, credentials_path='client_secret.json', token_path='token.json'):
         self.credentials_path = credentials_path
         self.token_path = token_path
         self.scopes = ['https://www.googleapis.com/auth/gmail.readonly', 'https://www.googleapis.com/auth/gmail.send']
@@ -24,7 +24,8 @@ class GmailClient:
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(self.credentials_path, self.scopes)
-                creds = flow.run_local_server(port=0)
+                flow.redirect_uri = 'http://localhost:8080/'
+                creds = flow.run_local_server(port=8080)
             with open(self.token_path, 'w') as token:
                 token.write(creds.to_json())
         return build('gmail', 'v1', credentials=creds)
