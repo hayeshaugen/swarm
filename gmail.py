@@ -50,24 +50,3 @@ class GmailClient:
         message['subject'] = subject
         message.set_content(message_text)
         return message
-
-# Example usage
-if __name__ == '__main__':
-    gmail_client = GmailClient()
-
-    # List messages
-    messages = gmail_client.list_messages()
-    print(f"Total messages: {len(messages)}")
-
-    # Get and print a message
-    if messages:
-        message_id = messages[0]['id']
-        message = gmail_client.get_message(message_id)
-        print(json.dumps(message, indent=4))
-
-    # Send a new message
-    to_address = 'seventysevenllamas@gmail.com'
-    subject = 'Test Email'
-    message_text = 'This is a test email sent via the Gmail API.'
-    gmail_client.send_message(to_address, subject, message_text)
-    print("Message sent.")
