@@ -1,6 +1,6 @@
 import os
 import json
-from checker import Checker
+from checker import Checker, Config
 from gmail import GmailClient
 from dotenv import load_dotenv
 
@@ -11,7 +11,7 @@ def main():
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
 
-    checker = Checker()
+    checker = Checker(Config())
     login_response = checker.login_to_service(username, password)
     print(login_response)
     session_cookie = login_response['cookie']
