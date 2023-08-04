@@ -1,3 +1,3 @@
-from .service import GmailService
-from .client import GmailClient
+from .service import Service
+from .client import Client
 from .composer import EmailComposer

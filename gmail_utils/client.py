@@ -1,7 +1,7 @@
 import base64
 from .composer import EmailComposer
 
-class GmailClient:
+class Client:
     def __init__(self, service):
         self._service = service
 

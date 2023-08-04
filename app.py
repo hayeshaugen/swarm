@@ -1,7 +1,7 @@
 import os
 import json
 from hive_communicator import Session, Config
-from gmail_utils import GmailClient, GmailService
+from gmail_utils import Client, Service
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -26,8 +26,8 @@ def main():
     print(f'fetch message response: {fetch_message_response}')
 
     # List messages
-    service = GmailService(credentials_path='client_secret.json', token_path='token.json')
-    gmail_client = GmailClient(service.get_service())
+    service = Service(credentials_path='client_secret.json', token_path='token.json')
+    gmail_client = Client(service.get_service())
     messages = gmail_client.list_messages()
     print(f"Total messages: {len(messages)}")
 

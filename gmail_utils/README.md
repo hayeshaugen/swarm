@@ -4,9 +4,9 @@
 
 ## Description
 
-- **GmailService**: This class is responsible for setting up the Gmail service using provided credentials and token paths.
+- **Service**: This class is responsible for setting up the Gmail service using provided credentials and token paths.
   
-- **GmailClient**: This class provides methods to interact with Gmail, such as listing messages (with filtering options), retrieving a specific message, and sending an email.
+- **Client**: This class provides methods to interact with Gmail, such as listing messages (with filtering options), retrieving a specific message, and sending an email.
   
 - **EmailComposer**: A utility class to assist in creating email messages.
 
@@ -15,17 +15,17 @@
 ### Setting up the Gmail Service
 
 ```python
-from gmail_utils import GmailService
+from gmail_utils import Service
 
-service = GmailService(credentials_path='path_to_client_secret.json', token_path='path_to_token.json')
+service = Service(credentials_path='path_to_client_secret.json', token_path='path_to_token.json')
 ```
 
 ### Listing Messages
 
 ```python
-from gmail_utils import GmailClient
+from gmail_utils import Client
 
-client = GmailClient(service.get_service())
+client = Client(service.get_service())
 
 # List all messages
 messages = client.list_messages()
