@@ -1,4 +1,4 @@
 from .api_client import APIClient
 from .data_processor import DataProcessor
-from .checker import Checker
+from .session import Session
 from .config import Config

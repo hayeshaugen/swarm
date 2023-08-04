@@ -1,6 +1,6 @@
 import os
 import json
-from checker import Checker, Config
+from hive_communicator import Session, Config
 from gmail_utils import GmailClient, GmailService
 from dotenv import load_dotenv
 
@@ -11,8 +11,8 @@ def main():
     username = os.getenv("USERNAME")
     password = os.getenv("PASSWORD")
 
-    checker = Checker(Config())
-    login_response = checker.login_to_service(username, password)
+    hive_session = Session(Config())
+    login_response = hive_session.login_to_service(username, password)
     print(login_response)
     session_cookie = login_response['cookie']
 
@@ -22,7 +22,7 @@ def main():
     # send_message_response = send_message(session_cookie, device_id, user_application_id, data)
     # print(f'send message response: {send_message_response}')
 
-    fetch_message_response = checker.fetch_messages(session_cookie)
+    fetch_message_response = hive_session.fetch_messages(session_cookie)
     print(f'fetch message response: {fetch_message_response}')
 
     # List messages

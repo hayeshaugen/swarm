@@ -1,7 +1,7 @@
 from .api_client import APIClient
 from .data_processor import DataProcessor
 
-class Checker:
+class Session:
     def __init__(self, config):
         self.api_client = APIClient(config)
         self.data_processor = DataProcessor()
